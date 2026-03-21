@@ -12,7 +12,7 @@ const Navbar = ({setShowLogin}) => {
     const menuLinks = [
     { name: "Home", path: "/" },
     { name: "Cars", path: "/cars" },
-    { name: "Bookings", path: "/bookings" },
+    { name: "Bookings", path: "/my-bookings" },
     { name: "Contact", path: "/contact" }
   ];
 
