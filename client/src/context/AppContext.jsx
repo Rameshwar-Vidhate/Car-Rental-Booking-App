@@ -1,9 +1,10 @@
+import React, { useState, useEffect } from 'react';
 import { createContext, useContext } from "react";
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from "react-router-dom"
 
-axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
+axios.defaults.baseURL = "http://localhost:3000";
 
 export const AppContext = createContext();
 
@@ -72,11 +73,11 @@ export const AppProvider = ({ children }) => {
     }, [token])
 
     const value = {
-       navigate, currency, axios, user, setUser, token, setToken, isOwner, setIsOwner, fetchUser, showLogin, logout, fetchCars, cars, setCars, pickupDate, setPickupDate, returnDate, setReturnDate
+       navigate, currency, axios, user, setUser, token, setToken, isOwner, setIsOwner, fetchUser, showLogin, logout, fetchCars, cars, setCars, pickupDate, setPickupDate, returnDate, setReturnDate, setShowLogin
     }
 
     return (
-        <AppContext.Provider value={ value }>
+        <AppContext.Provider value={value}>
            { children}
         </AppContext.Provider>
     )

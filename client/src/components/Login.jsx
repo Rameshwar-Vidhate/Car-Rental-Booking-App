@@ -1,4 +1,5 @@
 import React from 'react'
+import toast from "react-hot-toast";
 import { useAppContext } from '../context/AppContext';
 
 const Login = () => {
@@ -13,7 +14,16 @@ const Login = () => {
     const onSubmitHandler = async (event) => {
         try {
             event.preventDefault();
-            const {data} = await axios.post(`/api/user/${state}`, {name, email, password})
+
+            let payload;
+
+        if (state === "register") {
+            payload = { name, email, password };
+        } else {
+            payload = { email, password }; 
+        }
+
+        const { data } = await axios.post(`/api/user/${state}`, payload);
 
             if( data.success ){ 
                 navigate('/')
@@ -24,7 +34,8 @@ const Login = () => {
                 toast.error(data.message)
             }
         } catch ( error ) {
-
+            console.log(error);
+            toast.error("Something went wrong");
         }
     }
 
@@ -63,7 +74,7 @@ const Login = () => {
                      <span onClick={() => setState("register")} className="text-primary cursor-pointer">Click here</span>
                 </p>
             )}
-            <button className="bg-primary hover:bg-blue-600 transition-all text-white w-full py-2 rounded-md cursor-pointer">
+            <button type="submit" className="bg-primary hover:bg-blue-600 transition-all text-white w-full py-2 rounded-md cursor-pointer">
                 {state === "register" ? "Create Account" : "Login"}
             </button>
         </form>
