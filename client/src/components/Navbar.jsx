@@ -31,8 +31,7 @@ const Navbar = () => {
     const menuLinks = [
     { name: "Home", path: "/" },
     { name: "Cars", path: "/cars" },
-    { name: "Bookings", path: "/my-bookings" },
-    { name: "Contact", path: "/contact" }
+    { name: "My Bookings", path: "/my-bookings" }
   ];
 
     return (

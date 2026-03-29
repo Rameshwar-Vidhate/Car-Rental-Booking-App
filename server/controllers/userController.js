@@ -16,7 +16,7 @@ export const registerUser = async(req, res) => {
         const {name, email, password} = req.body
 
         if(!name || !email || !password || password.length < 8) {
-            return res.json({success: false, message: 'fill all the fields'})
+            return res.json({success: false, message: 'Fill all the fields'})
         }
 
         const userExists = await User.findOne({email})

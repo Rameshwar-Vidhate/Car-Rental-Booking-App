@@ -33,7 +33,7 @@ const Dashboard = () => {
             toast.error(data.message)
         }
         } catch (error) {
-            toast.error(data.message)
+            toast.error(error.message)
         }
     }
 
