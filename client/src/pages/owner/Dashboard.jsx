@@ -3,6 +3,7 @@ import { assets } from '../../assets/assets'
 import { dummyDashboardData } from '../../assets/assets'
 import Title from '../../components/owner/Title'
 import { useAppContext } from '../../context/AppContext'
+import { toast } from "react-hot-toast";
 
 const Dashboard = () => {
 

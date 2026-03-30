@@ -26,9 +26,11 @@ export const AppProvider = ({ children }) => {
     const fetchUser = async ()=> {
         try{
             const {data} = await axios.get('/api/user/data')
-            if (data.success) {
+            console.log("API Response:", data);
+
+            if(data.success) {
                 setUser(data.user)
-                setIsOwner(data.user.role === 'owner')
+                setIsOwner(data.user.role === "owner")
             } else {
                 navigate('/')
             }
@@ -41,6 +43,7 @@ export const AppProvider = ({ children }) => {
     const fetchCars = async () => {
         try {
             const {data} = await axios.get('/api/user/cars')
+            console.log("Cars:", data);
             data.success ? setCars(data.cars) : toast.error(data.message)
         } catch ( error ) {
             toast.error(error.message)
@@ -67,7 +70,7 @@ export const AppProvider = ({ children }) => {
     //useEffect to fetch user data when token is available 
     useEffect(() => {
         if(token){
-            axios.defaults.headers.common['Authorization'] = `${token}`
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
             fetchUser()
         }
     }, [token])

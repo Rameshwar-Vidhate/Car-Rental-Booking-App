@@ -43,7 +43,7 @@ export const addCar = async (req, res) => {
        });
 
        const image = optimizedImageUrl;
-       await Car.create({...car, owner: _id, image})
+       await Car.create({...car, owner: _id, image, isAvailable: true})
 
        res.json({success: true, message: "Car Added"})
 
@@ -77,13 +77,13 @@ export const toggleCarAvailability = async (req, res) => {
             return res.json({ success: false, message: "Unauthorized"});
         }
 
-        car.isAvaliable = !car.isAvaliable;
+        car.isAvailable = !car.isAvailable;
         await car.save()
 
         res.json({success: true, message: "Availability Toggled"})
     } catch (error) {
-        consosl.log(error.message);
-        resjson({success: false, message: error.message})
+        console.log(error.message);
+        res.json({success: false, message: error.message})
     }
 }
 
@@ -100,7 +100,7 @@ export const deleteCar = async (req, res) => {
         }
 
         car.owner = null;
-        car.isAvaliable = false;
+        car.isAvailable = false;
 
         await car.save()
 
@@ -121,8 +121,7 @@ export const getDashboardData = async ( req, res ) => {
         }
 
         const cars = await Car.find({owner: _id})
-        const bookings = await Booking.find({owner: _id}).populate('car')
-        sort({ createdAt: -1 });
+        const bookings = await Booking.find({owner: _id}).populate('car').sort({ createdAt: -1 });
 
         const pendingBookings = await Booking.find({owner: _id, status: "pending"})
         const completedBookings = await Booking.find({owner: _id, status: "confirmed"})
@@ -174,7 +173,7 @@ export const updateUserImage = async (req, res) => {
 
        const image = optimizedImageUrl;
 
-       await User.findByIdAndDelete(_id, {image});
+       await User.findByIdAndUpdate(_id, {image});
        res.json({success: true, message: " Image Updated"})
 
     } catch (error) {

@@ -1,6 +1,8 @@
 import React, { useState } from 'react' 
 import Title from '../../components/owner/Title'
 import { assets } from '../../assets/assets'
+import { useAppContext } from "../../context/AppContext";
+import { toast } from "react-hot-toast"; 
 
 const AddCar = () => {
 
@@ -82,7 +84,7 @@ const AddCar = () => {
 
                     <div className='flex flex-col w-full'>
                       <label>Model</label>
-                      <input type="text" placeholder="e.g. X%, E-Class, M4..." required className='px-3 py2 mt-1 border border-borderColor rounded-md outline-none' value={car.model} onChange={e=>setCar({...car, model: e.target.value})}/>
+                      <input type="text" placeholder="e.g. X5, E-Class, M4..." required className='px-3 py2 mt-1 border border-borderColor rounded-md outline-none' value={car.model} onChange={e=>setCar({...car, model: e.target.value})}/>
                     </div>
                      
                 </div>
@@ -96,7 +98,7 @@ const AddCar = () => {
 
                      <div className='flex flex-col w-full'>
                       <label>Daily Price ({currency})</label>
-                      <input type="number" placeholder="100" required className='px-3 py2 mt-1 border border-borderColor rounded-md outline-none' value={car.year} onChange={e=>setCar({...car, pricePerDay: e.target.value})}/>
+                      <input type="number" placeholder="100" required className='px-3 py2 mt-1 border border-borderColor rounded-md outline-none' value={car.pricePerDay} onChange={e=>setCar({...car, pricePerDay: e.target.value})}/>
                     </div>
 
                     <div className='flex flex-col w-full'>
@@ -124,7 +126,7 @@ const AddCar = () => {
 
                     <div className='flex flex-col w-full'>
                       <label>Fuel type</label>
-                      <select onChange={e=> setCar({...car, fuel_type: e.target.value})} value={car.transmission} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none'>
+                      <select onChange={e=> setCar({...car, fuel_type: e.target.value})} value={car.fuel_type} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none'>
                         <option value="">Select a fuel type</option>
                         <option value="Gas">Gas</option>
                         <option value="Diesel">Diesel</option>
