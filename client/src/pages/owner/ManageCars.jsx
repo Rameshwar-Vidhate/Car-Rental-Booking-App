@@ -48,7 +48,10 @@ const ManageCars = () => {
       const {data} = await axios.post('/api/owner/delete-car', {carId})
       if(data.success) {
         toast.success(data.message)
-        fetchOwnerCars()
+         await fetchOwnerCars() 
+         await fetchCars()  
+
+         setCars(prev => prev.filter(car => car._id !== carId))
       } else {
         toast.error(data.message)
       }
