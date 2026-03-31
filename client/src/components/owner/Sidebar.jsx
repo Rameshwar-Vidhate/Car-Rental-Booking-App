@@ -3,6 +3,7 @@ import { assets, ownerMenuLinks } from '../../assets/assets'
 import { useLocation } from 'react-router-dom';
 import { NavLink } from "react-router-dom"; 
 import { useAppContext } from "../../context/AppContext";
+import { toast } from "react-hot-toast";
 
 const Sidebar = () => {
 
@@ -31,7 +32,7 @@ const Sidebar = () => {
 
     return (
         <div className='relative min-h-screen md:flex flex-col items-center pt-8 max-w-13 md:max-w-60 w-full border-r border-borderColor text-sm'>
-            <div className='group realtive'>
+            <div className='group relative'>
                 <label htmlFor="image">
                     <img src={image ? URL.createObjectURL(image) : user?.image || "https://unsplash.com/photos/woman-potting-a-plant-on-a-porch-_p1ajsued9c"} alt="" className='h-9 md:h-14 w-9 md:w-14 rounded-full mx-auto'/>
                     
@@ -43,7 +44,7 @@ const Sidebar = () => {
                 </label>
             </div>
             {image && (
-                <button className="absolute top-0 right-0 flex p-2 gap-1 bg-primary/10 text-primary cursor-pointer" onClick={updateImage}>Save <img src={assets.check_icon} width={13} alt="" /></button>
+                <button className="absolute top-0 right-0 flex p-2 gap-1 bg-primary/10 text-primary cursor-pointer" onClick={updateImage}>Save <img  src={assets.check_icon} width={13} alt="" /></button>
             )}
             <p className='mt-2 text-base max-md-hidden'>{user?.name}</p>
 

@@ -26,7 +26,6 @@ export const AppProvider = ({ children }) => {
     const fetchUser = async ()=> {
         try{
             const {data} = await axios.get('/api/user/data')
-            console.log("API Response:", data);
 
             if(data.success) {
                 setUser(data.user)
@@ -43,8 +42,7 @@ export const AppProvider = ({ children }) => {
     const fetchCars = async () => {
         try {
             const {data} = await axios.get('/api/user/cars')
-            console.log("Cars:", data);
-            data.success ? setCars(data.cars) : toast.error(data.message)
+            data.success ? setCars([...data.cars]) : toast.error(data.message)
         } catch ( error ) {
             toast.error(error.message)
         }

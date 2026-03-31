@@ -48,7 +48,7 @@ const Hero = () => {
             </div>
             <motion.button 
             whileHover={{ scale: 1.05 }} 
-            whileTap={{ scale: 0.95 }} className='flex items-center justify-center gap-1 px-9 py-3 max-sm:mt-4 bg-primary hover:bg-primary-dull text-white rounded-full cursor-pointer'>
+            whileTap={{ scale: 0.95 }} onClick={handleSearch} className='flex items-center justify-center gap-1 px-9 py-3 max-sm:mt-4 bg-primary hover:bg-primary-dull text-white rounded-full cursor-pointer'>
                 <img src={assets.search_icon} alt="search" className='brightness-300' />
                 Search
                </motion.button>
